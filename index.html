@@ -20,8 +20,7 @@
       renderer="logarithmicDepthBuffer: true;"
       vr-mode-ui="enabled: false"
       gesture-detector
-      id="scene"
-    >
+      id="scene" >
 
   <a-marker
     type="pattern"
@@ -30,9 +29,15 @@
     emitevents="true"
     cursor="fuse: false; rayOrigin: mouse;"
     id="markerA"
-    sound="zvuk.mp3"
-  >
+    sound="zvuk.mp3">
   
+
+      <a-assets>
+    <img id="my-image" src="kit.jpg">
+  </a-assets>
+
+  <a-image src="#my-image" rotation="0 0 -90" sound="zvuk.mp3">
+  </a-image>
   </a-marker>
       
       <a-entity camera></a-entity>
