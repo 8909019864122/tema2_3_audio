@@ -13,27 +13,41 @@
     <script src="gesture-handler.js"></script>
   </head>
 
-<body>
-<a-scene
-arjs
-embedded
-renderer="logarithmicDepthBuffer: true;"
-vr-mode-ui="enabled: false"
-gesture-detector
-id="scene"
->
-<a-marker
-type="pattern"
-url="p.patt"
-raycaster="objects: .clickable"
-emitevents="true"
-cursor="fuse: false; rayOrigin: mouse;"
-id="markerA"
->
-<a-sound src="url(zvuk.mp3)" autoplay="true"></a-sound>
-</a-marker>
+  <body>
+    <a-scene
+      arjs
+      embedded
+      renderer="logarithmicDepthBuffer: true;"
+      vr-mode-ui="enabled: false"
+      gesture-detector
+      id="scene"
+    >
 
-<a-entity camera></a-entity>
-</a-scene>
-</body>
+      <a-marker
+        type="pattern"
+        url="p.patt"
+        id="markerA"
+        emitevents="true"
+      >
+        <a-sound
+          src="zvuk.mp3"
+          autoplay="false"
+          loop="false"
+          id="sound"
+        ></a-sound>
+      </a-marker>
+
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <script>
+      document.querySelector('#markerA').addEventListener('markerFound', function() {
+        document.querySelector('#sound').components.sound.playSound();
+      });
+
+      document.querySelector('#markerA').addEventListener('markerLost', function() {
+        document.querySelector('#sound').components.sound.stopSound();
+      });
+    </script>
+  </body>
 </html>
